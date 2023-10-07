@@ -1,6 +1,6 @@
 from fastapi import FastAPI , Depends,HTTPException
 from .orm_db import schemas   
-from .routers import users,auth
+from .routers import users,auth,post
 from .orm_db.database import base , engine
 from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
 from typing import Annotated 
@@ -12,7 +12,7 @@ base.metadata.create_all(bind=engine)
 #روتر ها ها مانند بلوپرینت ها در فلسک هستند
 app.include_router(users.router)
 app.include_router(auth.router)
-
+app.include_router(post.router)
 
 @app.get('/', response_model=schemas.simpleRespones)
 def root():

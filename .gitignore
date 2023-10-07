@@ -1,2 +1,4 @@
 .vene/
 __pycache__/
+
+.env

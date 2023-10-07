@@ -18,3 +18,13 @@ class user_db(base):
       password=Column(String,nullable=False)
       email=Column(String,nullable=True)
       sinup_data=Column(DateTime ,server_default="now()" )
+      
+class post_db(base):
+      __tablename__="posts"
+      id= Column(Integer,nullable=False,index=True,primary_key=True)
+      title=Column(String,nullable=False)
+      content=Column(String)
+      time_Created =Column(DateTime ,server_default="now()")
+      owner_id=Column(Integer,ForeignKey("users.id",ondelete="CASCADE") ,nullable=False)
+      
+      owner=relationship("user_db")

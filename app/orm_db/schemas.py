@@ -2,7 +2,7 @@
       با مدل های اس کیو ال اشتباه گرفته نشوند اسم این فایل اسکیما است
 '''
 from pydantic import BaseModel,EmailStr
-from datetime import date
+from datetime import datetime
 
 
 from typing import List,Dict, Optional
@@ -12,7 +12,7 @@ class simpleRespones(BaseModel):
       #جواب یک دیکشنری است به اسم رسیپاند 
       # که حاوی یک لیست از دیکشنری هایی است که کی انها استرینکو ولیو انها اینت است
       respones:list[dict[str,int]]
-
+#_____________________ USERS_________________________________
 class createUserRespones(BaseModel):
       msg:str
       info:dict
@@ -35,6 +35,31 @@ class user(userBase):
 class userCredentials(BaseModel):
       username:str
       password:str
+
       
 class TokenData(BaseModel):
     id: int = None
+    
+#_________________POSTS__________________________
+
+class postBase(BaseModel):
+      title:str
+      content:str
+
+class postCreate(postBase):
+      pass
+
+class post(postBase):
+      id:int
+      time_created:datetime
+      owner_id:int
+      owner:user
+      class conficg():
+            orm_mode=True
+      
+class postId(BaseModel):
+      post_id:int
+      
+class post_out:
+      post: post
+      
