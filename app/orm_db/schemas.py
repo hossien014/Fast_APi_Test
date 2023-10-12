@@ -1,7 +1,7 @@
 '''این مدل ها مربوط به پایدنتیک هستند  و برای اینکه 
       با مدل های اس کیو ال اشتباه گرفته نشوند اسم این فایل اسکیما است
 '''
-from pydantic import BaseModel,EmailStr
+from pydantic import BaseModel,EmailStr, conint
 from datetime import datetime
 
 
@@ -62,4 +62,9 @@ class postId(BaseModel):
       
 class post_out:
       post: post
+      
+class vote_input(BaseModel):
+      post_id :int
+      # یعنی عدد ورودی باید یک یا کمتر از یک باشد
+      dir :conint(le=1)
       

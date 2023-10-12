@@ -4,10 +4,11 @@ from fastapi import HTTPException ,status,Depends
 from fastapi.security import OAuth2PasswordBearer
 from .orm_db import schemas,database,models_orm
 from sqlalchemy.orm import Session
+from . import config
 
-ALGORITHM="HS256"
-M_SECRET_KEY="SOMERANDOMTEXT"
-ACCESS_TOKEN_EXPIRE_MINUTES=60
+ALGORITHM=config.setting.algorithm
+M_SECRET_KEY=config.setting.secret_key
+ACCESS_TOKEN_EXPIRE_MINUTES=config.setting.access_token_expire_minute 
 
 '''این خط کد چند کار را به عهده دارد
 اول اینکه در صفحه داک قابلیت لاگین را اضافه میکند 
